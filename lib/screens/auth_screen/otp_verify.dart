@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gramdevta/screens/bottomnavbar.dart';
 
 import '../../utils/utils.dart';
-import '../homescreen.dart';
+ 
 
 class Otp extends StatefulWidget {
   final String verificationId;
@@ -28,7 +29,11 @@ class _OtpState extends State<Otp> {
         if (userCredential.user != null) {
           Navigator.popUntil(context, (route) => route.isFirst);
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const BottomNavBar(),
+            ),
+          );
         }
       } on FirebaseAuthException catch (ex) {
         log(ex.code.toString());
